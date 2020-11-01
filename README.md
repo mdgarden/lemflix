@@ -11,8 +11,10 @@ Learning React and ES6 by building a Movie Discovery App.
 
 ## API Verbs
 
-- [ ] Now playing(Movie)
-- [ ] Upcoming (TV, Movie)
-- [ ] Top Rated(TV, Movie)
-- [ ] Popular (TV, Movie)
-- [ ] Airing Today (TV)
+- [x] Now playing(Movie)
+- [x] Upcoming (TV, Movie)
+- [x] Top Rated(TV)
+- [x] Popular (TV, Movie)
+- [x] Airing Today (TV)
+- [ ] TV Show Detail
+- [ ] Movie Show Detail
