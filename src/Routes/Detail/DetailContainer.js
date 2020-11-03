@@ -1,6 +1,7 @@
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
 
+// eslint-disable-next-line
 export default class extends React.Component {
   state = {
     result: null,

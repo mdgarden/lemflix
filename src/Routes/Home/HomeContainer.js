@@ -1,6 +1,8 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
+import { moviesApi } from "api";
 
+// eslint-disable-next-line
 export default class extends React.Component {
   state = {
     nowPlaying: null,
@@ -9,6 +11,33 @@ export default class extends React.Component {
     error: null,
     loading: true,
   };
+
+  async componentDidMount() {
+    try {
+      const {
+        data: { results: nowPlaying },
+      } = await moviesApi.nowPlaying();
+      const {
+        data: { results: upcoming },
+      } = await moviesApi.upcoming();
+      const {
+        data: { results: popular },
+      } = await moviesApi.popular();
+      this.setState({
+        nowPlaying: nowPlaying,
+        upcoming: upcoming,
+        popular: popular,
+      });
+    } catch {
+      this.setState({
+        error: "Can't get Movies information.",
+      });
+    } finally {
+      this.setState.apply({
+        loading: false,
+      });
+    }
+  }
 
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
