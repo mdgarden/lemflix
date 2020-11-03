@@ -1,2 +1,1 @@
-exporrt default () => "Home";
-
+export default () => "Home";
