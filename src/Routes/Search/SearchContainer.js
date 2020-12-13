@@ -1,3 +1,4 @@
+import { tvApi, moviesApi } from "api";
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
 
@@ -6,13 +7,47 @@ export default class extends React.Component {
   state = {
     movieResults: null,
     tvResults: null,
-    searchTerm: "",
+    searchTerm: "code",
     loading: false,
     error: null,
   };
 
+  componentDidMount() {
+    this.handleSubmit();
+  }
+
+  handleSubmit = () => {
+    const { searchTerm } = this.state;
+    if (searchTerm !== "") {
+      this.searchByTerm(searchTerm);
+    }
+  };
+
+  searchByTerm = async () => {
+    const { searchTerm } = this.state;
+    this.setstate({ loading: true });
+    try {
+      const {
+        data: { results: movieResults },
+      } = await moviesApi.search(searchTerm);
+      const {
+        data: { results: tvResults },
+      } = await tvApi.search(searchTerm);
+      this.setState({
+        movieResults,
+        tvResults,
+      });
+    } catch {
+      this.setState({ error: "Can't find results." });
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
+
   render() {
     const { movieResults, tvResults, searchTerm, loading, error } = this.state;
+    console.log(this.state);
+    console.log("Hi");
     return (
       <SearchPresenter
         movieResults={movieResults}

@@ -38,7 +38,7 @@ export default class extends React.Component {
       <TVPresenter
         topRated={topRated}
         popular={popular}
-        airingTday={airingTday}
+        airingTday={airingToday}
         loading={loading}
         error={error}
       />
