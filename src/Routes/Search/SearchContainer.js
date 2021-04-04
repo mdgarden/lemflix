@@ -1,4 +1,4 @@
-import { tvApi, moviesApi } from "api";
+import { tvApi, moviesApi } from "../../api";
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
 
@@ -7,7 +7,7 @@ export default class extends React.Component {
   state = {
     movieResults: null,
     tvResults: null,
-    searchTerm: "code",
+    searchTerm: "",
     loading: false,
     error: null,
   };
@@ -19,7 +19,7 @@ export default class extends React.Component {
   handleSubmit = () => {
     const { searchTerm } = this.state;
     if (searchTerm !== "") {
-      this.searchByTerm(searchTerm);
+      this.searchByTerm();
     }
   };
 
@@ -52,9 +52,9 @@ export default class extends React.Component {
       <SearchPresenter
         movieResults={movieResults}
         tvResults={tvResults}
+        searchTerm={searchTerm}
         loading={loading}
         error={error}
-        searchTerm={searchTerm}
         handleSubmit={this.handleSubmit}
       />
     );

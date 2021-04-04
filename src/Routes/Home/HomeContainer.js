@@ -33,7 +33,7 @@ export default class extends React.Component {
         error: "Can't find Movie information.",
       });
     } finally {
-      this.setState.apply({
+      this.setState({
         loading: false,
       });
     }
